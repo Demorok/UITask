@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UserSettings
   m_EditorClassIdentifier: 
   soundSettings:
-    effectsVolume: 0.5201037
-    musicVolume: 0.7949958
-  graphicsQuality: {fileID: 11400000, guid: f8f0564b9a037f449a8c041252092784, type: 2}
-  languagePack: {fileID: 11400000, guid: 58d5d47be326deb439a6a5f579f1f6a0, type: 2}
+    effectsVolume: 0.5581536
+    musicVolume: 0.84624666
+  graphicsQuality: Custom
+  languagePack: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"

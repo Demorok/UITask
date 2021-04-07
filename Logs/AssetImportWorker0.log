@@ -1411,3 +1411,4 @@ Received Import Request.
 Start importing Assets/Scripts/SoundController.cs using Guid(7fc4224da832f744cb5aef98e536c40e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5dc895352d13d00ded55d54f3ea615d') in 0.007246 seconds
   Import took 0.038508 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

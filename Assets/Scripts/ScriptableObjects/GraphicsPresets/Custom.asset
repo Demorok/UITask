@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Custom
   m_EditorClassIdentifier: 
   presetName: Custom
-  shadowQualityValue: 100
-  shadowResolutionValue: 100
-  resolutionValue: 100
+  shadowQualityValue: 1
+  shadowResolutionValue: 3
+  resolutionValue: 0
