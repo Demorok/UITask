@@ -4,6 +4,8 @@ using UnityEngine;
 public class UserSettings : ScriptableObject
 {
     public SoundSettings soundSettings;
-    public string graphicsQuality;
+    public int qualityPresetValue;
+    public int resolutionValue;
+    public bool fullScreen;
     public string languagePack;
 }

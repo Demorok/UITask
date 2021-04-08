@@ -4,11 +4,9 @@ using UnityEngine;
 
 public abstract class LanguageController : MonoBehaviour
 {
-    [SerializeField]
-    protected UserSettings userSettings;
+    [SerializeField] protected UserSettings userSettings;
 
-    [SerializeField]
-    protected LanguagePack[] languagePacks;
+    [SerializeField] protected LanguagePack[] languagePacks;
 
     protected LanguagePack currentPack;
 

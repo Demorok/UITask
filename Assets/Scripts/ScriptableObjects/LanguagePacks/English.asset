@@ -23,8 +23,6 @@ MonoBehaviour:
   settingsMusicVolume: Music Volume
   settingsGraphicsTab: Graphics
   settingsQuality: Quality
-  settingsShadowsQuality: Shadows Quality
-  settingsShadowsResolution: Shadows Resolution
   settingsFullScreen: Full Screen
   settingsResolution: Resolution
   settingsConfirm: Confirm
@@ -34,4 +32,4 @@ MonoBehaviour:
   highGraphicsQuality: High
   mediumGraphicsQuality: Medium
   lowGraphicsQuality: Low
-  customGraphicsQuality: Custom
+  veryHighGraphicsQuality: Very High

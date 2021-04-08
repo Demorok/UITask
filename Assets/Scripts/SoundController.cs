@@ -5,20 +5,11 @@ using UnityEngine.UI;
 
 public class SoundController : MonoBehaviour
 {
-    [SerializeField]
-    AudioSource effectsSound;
-
-    [SerializeField]
-    Slider effectsVolumeSlider;
-
-    [SerializeField]
-    AudioSource musicSound;
-
-    [SerializeField]
-    Slider musicVolumeSlider;
-
-    [SerializeField]
-    UserSettings userSettings;
+    [SerializeField] AudioSource effectsSound;
+    [SerializeField] Slider effectsVolumeSlider;
+    [SerializeField] AudioSource musicSound;
+    [SerializeField] Slider musicVolumeSlider;
+    [SerializeField] UserSettings userSettings;
 
     bool setUserSettings;
 
@@ -57,10 +48,8 @@ public class SoundController : MonoBehaviour
 [System.Serializable]
 public class SoundSettings
 {
-    [Range(0, 1f)]
-    public float effectsVolume;
-    [Range(0, 1f)]
-    public float musicVolume;
+    [Range(0, 1f)] public float effectsVolume;
+    [Range(0, 1f)] public float musicVolume;
 
     public SoundSettings(float effectsVolume, float musicVolume)
     {

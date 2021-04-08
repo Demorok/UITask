@@ -4,17 +4,13 @@ using System.Collections.Generic;
 
 public class SettingsLanguage : LanguageController
 {
-    [SerializeField]
-    Dropdown languageDropdown;
+    [SerializeField] Dropdown languageDropdown;
 
-    [SerializeField]
-    Dropdown qualityDropdown;
+    [SerializeField] Dropdown qualityDropdown;
 
-    [SerializeField]
-    Text settingsTitle;
+    [SerializeField] Text settingsTitle;
 
-    [SerializeField]
-    Text settingsBack;
+    [SerializeField] Text settingsBack;
 
     #region SoundTab
     [Header("Sound Tab")]
@@ -38,12 +34,6 @@ public class SettingsLanguage : LanguageController
 
     [SerializeField]
     Text settingsQuality;
-
-    [SerializeField]
-    Text settingsShadowsQuality;
-
-    [SerializeField]
-    Text settingsShadowsResolution;
 
     [SerializeField]
     Text settingsFullScreen;
@@ -70,7 +60,6 @@ public class SettingsLanguage : LanguageController
     protected override void Awake()
     {
         Initialise();
-        Set_User_Settings();
         base.Awake();
     }
 
@@ -82,6 +71,8 @@ public class SettingsLanguage : LanguageController
             languagePacksList.Add(pack.packName);
         }
         languageDropdown.AddOptions(languagePacksList);
+
+        Set_User_Settings();
     }
 
     void Set_User_Settings()
@@ -109,8 +100,6 @@ public class SettingsLanguage : LanguageController
 
         settingsGraphicsTab.text = currentPack.settingsGraphicsTab;
         settingsQuality.text = currentPack.settingsQuality;
-        settingsShadowsQuality.text = currentPack.settingsShadowsQuality;
-        settingsShadowsResolution.text = currentPack.settingsShadowsResolution;
         settingsFullScreen.text = currentPack.settingsFullScreen;
         settingsResolution.text = currentPack.settingsResolution;
         settingsConfirm.text = currentPack.settingsConfirm;
@@ -132,5 +121,12 @@ public class SettingsLanguage : LanguageController
             data.text = currentPack.Unmapping(data.text);
         }
         userSettings.languagePack = languagePacks[languageDropdown.value].packName;
+        Save_User_Settings();
+    }
+
+    void Save_User_Settings()
+    {
+        string destination = Application.persistentDataPath + GlobalVariables.SETTINGSPATH;
+        SaveLoad.Save_Data(destination, userSettings);
     }
 }

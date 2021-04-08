@@ -3,17 +3,10 @@ using UnityEngine.UI;
 
 public class MainMenuLanguage : LanguageController
 {
-    [SerializeField]
-    Text mainMenuTitle;
-
-    [SerializeField]
-    Text mainMenuCabinet;
-
-    [SerializeField]
-    Text mainMenuSettings;
-
-    [SerializeField]
-    Text mainMenuExit;
+    [SerializeField] Text mainMenuTitle;
+    [SerializeField] Text mainMenuCabinet;
+    [SerializeField] Text mainMenuSettings;
+    [SerializeField] Text mainMenuExit;
 
     protected override void Reload()
     {

@@ -44,10 +44,6 @@ public class LanguagePack : ScriptableObject
 
     public string settingsQuality;
 
-    public string settingsShadowsQuality;
-
-    public string settingsShadowsResolution;
-
     public string settingsFullScreen;
 
     public string settingsResolution;
@@ -78,7 +74,7 @@ public class LanguagePack : ScriptableObject
 
     public string lowGraphicsQuality;
 
-    public string customGraphicsQuality;
+    public string veryHighGraphicsQuality;
 
     #endregion
 
@@ -96,8 +92,8 @@ public class LanguagePack : ScriptableObject
             case "Low":
                 result = lowGraphicsQuality;
                 break;
-            case "Custom":
-                result = customGraphicsQuality;
+            case "Very High":
+                result = veryHighGraphicsQuality;
                 break;
             default:
                 result = value;
@@ -114,8 +110,8 @@ public class LanguagePack : ScriptableObject
             return "Medium";
         else if (value == lowGraphicsQuality)
             return "Low";
-        else if (value == customGraphicsQuality)
-            return "Custom";
+        else if (value == veryHighGraphicsQuality)
+            return "Very High";
         else return value;
     }
 }
