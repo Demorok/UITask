@@ -33,3 +33,39 @@ MonoBehaviour:
   mediumGraphicsQuality: Medium
   lowGraphicsQuality: Low
   veryHighGraphicsQuality: Very High
+  cabinetTitle: Cabinet
+  cabinetDay: Day
+  cabinetSkipDay: Skip Day
+  customerNames:
+  - Adam
+  - Jane
+  - Ken
+  - Alice
+  - Kate
+  - Jenn
+  - Max
+  - John
+  - Jade
+  - Baraka
+  customerSurnames:
+  - Smith
+  - Black
+  - White
+  - Green
+  - Brown
+  - McGregor
+  - McDonald
+  - Jobs
+  - Spielberg
+  - Nightly
+  customerPhrases:
+  - Hi
+  - Hello
+  - Wozzup
+  - o/
+  - Gotcha
+  - Ok
+  - Yes
+  - No
+  - Some long phrase
+  - Interesting

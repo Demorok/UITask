@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class CustomerCard : MonoBehaviour
 {
-    [SerializeField] Image body;
-    [SerializeField] Image face;
-    [SerializeField] Image hair;
-    [SerializeField] Image kit;
-    [SerializeField] Text customerName;
+    [SerializeField] protected Image body;
+    [SerializeField] protected Image face;
+    [SerializeField] protected Image hair;
+    [SerializeField] protected Image kit;
+    [SerializeField] protected Text customerName;
+
 
     string customerPhrase;
 
@@ -28,14 +29,19 @@ public class CustomerCard : MonoBehaviour
         customerPhrase = customer.customerPhrase;
     }
 
-    public void Construct()
+    public void Construct(string name, string phrase)
     {
         body.sprite = Preloader.bodies[Random.Range(0, Preloader.bodies.Length)];
         face.sprite = Preloader.faces[Random.Range(0, Preloader.faces.Length)];
         hair.sprite = Preloader.hairs[Random.Range(0, Preloader.hairs.Length)];
         kit.sprite = Preloader.kits[Random.Range(0, Preloader.kits.Length)];
+        customerName.text = name;
+        customerPhrase = phrase;
+    }
 
-        //generate name + phrase
+    public void Expand()
+    {
+        CustomerQueue.destructQueue.Enqueue(gameObject);
     }
 
     public Customer Convert_Customer()

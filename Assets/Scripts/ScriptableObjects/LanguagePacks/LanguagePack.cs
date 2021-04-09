@@ -13,11 +13,8 @@ public class LanguagePack : ScriptableObject
     [Header("Main menu")]
 
     public string mainMenuTitle;
-
     public string mainMenuCabinet;
-
     public string mainMenuSettings;
-
     public string mainMenuExit;
 
     #endregion
@@ -31,9 +28,7 @@ public class LanguagePack : ScriptableObject
     #region SoundTab
 
     public string settingsSoundTab;
-
     public string settingsEffectsVolume;
-
     public string settingsMusicVolume;
 
     #endregion
@@ -41,13 +36,9 @@ public class LanguagePack : ScriptableObject
     #region GraphicsTab
 
     public string settingsGraphicsTab;
-
     public string settingsQuality;
-
     public string settingsFullScreen;
-
     public string settingsResolution;
-
     public string settingsConfirm;
 
     #endregion
@@ -55,26 +46,35 @@ public class LanguagePack : ScriptableObject
     #region LanguageTab
 
     public string settingsLanguageTab;
-
     public string settingsLanguage;
 
     #endregion
 
     public string settingsBack;
 
-    #endregion
-
     #region GraphicsQualityMapping
 
     [Header("Graphics Quality Mapping")]
 
     public string highGraphicsQuality;
-
     public string mediumGraphicsQuality;
-
     public string lowGraphicsQuality;
-
     public string veryHighGraphicsQuality;
+
+    #endregion
+
+    #endregion
+
+    #region Cabinet
+    [Header("Cabinet")]
+
+    public string cabinetTitle;
+    public string cabinetDay;
+    public string cabinetSkipDay;
+
+    public string[] customerNames;
+    public string[] customerSurnames;
+    public string[] customerPhrases;
 
     #endregion
 
