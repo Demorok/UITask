@@ -1,11 +1,10 @@
+using System.IO;
 using UnityEngine;
 
 public class Preloader : MonoBehaviour
 {
     [SerializeField] GameObject startScreen;
     [SerializeField] UserSettings userSettings;
-    [SerializeField] AudioSource effectsSound;
-    [SerializeField] AudioSource musicSound;
 
     public static Sprite[] bodies;
     public static Sprite[] faces;
@@ -16,7 +15,14 @@ public class Preloader : MonoBehaviour
     {
         Load_User_Settings();
         Load_Customer_Constructor();
+        Create_Save_Directory();
         startScreen.SetActive(true);
+        SoundRecorder.Play_Music(GlobalVariables.MAINMENUMUSIC);
+    }
+
+    void Create_Save_Directory()
+    {
+        Directory.CreateDirectory(Application.persistentDataPath + GlobalVariables.DATAPATH);
     }
 
     void Load_User_Settings()
@@ -25,8 +31,6 @@ public class Preloader : MonoBehaviour
         SaveLoad.Load_Data(destination, userSettings);
 
         QualitySettings.SetQualityLevel(userSettings.qualityPresetValue, true);
-        effectsSound.volume = userSettings.soundSettings.effectsVolume;
-        musicSound.volume = userSettings.soundSettings.musicVolume;
     }
 
     void Load_Customer_Constructor()

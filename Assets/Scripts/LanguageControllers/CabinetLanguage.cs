@@ -1,35 +1,59 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CabinetLanguage : LanguageController
 {
     [SerializeField] Text cabinetTitle;
-    [SerializeField] Text day;
-    [SerializeField] Text skipDay;
+    [SerializeField] Text cabinetDay;
+    [SerializeField] Text cabinetSkipDay;
+    [SerializeField] Text cabinetSave;
+    [SerializeField] Text cabinetMainMenu;
+
+    [SerializeField] CustomerQueue customerQueue;
 
     protected override void Reload()
     {
         base.Reload();
 
         cabinetTitle.text = currentPack.cabinetTitle;
-        day.text = currentPack.cabinetDay + " " + CustomerQueue.day;
-        skipDay.text = currentPack.cabinetSkipDay;
+        cabinetDay.text = currentPack.cabinetDay + " " + CustomerQueue.day;
+        cabinetSkipDay.text = currentPack.cabinetSkipDay;
+        cabinetSave.text = currentPack.cabinetSave;
+        cabinetMainMenu.text = currentPack.cabinetMainMenu;
+        Update_Customers();
     }
 
-    public string Get_Random_Name()
+    public int[] Generate_Customer_Code()
     {
-        string randomName = currentPack.customerNames[Random.Range(0, currentPack.customerNames.Length)];
-        string randomSurname = currentPack.customerSurnames[Random.Range(0, currentPack.customerSurnames.Length)];
-        return randomName + " " + randomSurname;
+        int randomNameCode = Random.Range(0, currentPack.customerNames.Length);
+        int randomSurnameCode = Random.Range(0, currentPack.customerSurnames.Length);
+        int randomPhraseCode = Random.Range(0, currentPack.customerPhrases.Length);
+        return new int[] { randomNameCode, randomSurnameCode, randomPhraseCode };
     }
 
-    public string Get_Random_Phrase()
+    public string[] Get_Texts_By_Code(int[] customerCode)
     {
-        return currentPack.customerPhrases[Random.Range(0, currentPack.customerPhrases.Length)];
+        if (currentPack.packName != userSettings.languagePack)
+            Reload();
+
+        string name = currentPack.customerNames[customerCode[0]];
+        string surname = currentPack.customerSurnames[customerCode[1]];
+        string phrase = currentPack.customerPhrases[customerCode[2]];
+        return new string[] { name + " " + surname, phrase };
+    }
+
+    public void Update_Customers()
+    {
+        foreach(GameObject customer in customerQueue.customers)
+        {
+            CustomerCard card = customer.GetComponent<CustomerCard>();
+            card.Update_Customer(Get_Texts_By_Code(card.customerCode));
+        }
     }
 
     public void Set_Day()
     {
-        day.text = currentPack.cabinetDay + " " + CustomerQueue.day;
+        cabinetDay.text = currentPack.cabinetDay + " " + CustomerQueue.day;
     }
 }

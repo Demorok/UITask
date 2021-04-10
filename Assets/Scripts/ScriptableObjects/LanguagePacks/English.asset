@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packName: English
   mainMenuTitle: Title
-  mainMenuCabinet: Cabinet
+  mainMenuNewCabinet: New Cabinet
+  mainMenuLoadCabinet: Load Cabinet
   mainMenuSettings: Settings
   mainMenuExit: Exit
   settingsTitle: Settings
@@ -36,6 +37,8 @@ MonoBehaviour:
   cabinetTitle: Cabinet
   cabinetDay: Day
   cabinetSkipDay: Skip Day
+  cabinetSave: Save
+  cabinetMainMenu: Main Menu
   customerNames:
   - Adam
   - Jane

@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class MainMenuLanguage : LanguageController
 {
     [SerializeField] Text mainMenuTitle;
-    [SerializeField] Text mainMenuCabinet;
+    [SerializeField] Text mainMenuNewCabinet;
+    [SerializeField] Text mainMenuLoadCabinet;
     [SerializeField] Text mainMenuSettings;
     [SerializeField] Text mainMenuExit;
 
@@ -13,7 +14,8 @@ public class MainMenuLanguage : LanguageController
         base.Reload();
 
         mainMenuTitle.text = currentPack.mainMenuTitle;
-        mainMenuCabinet.text = currentPack.mainMenuCabinet;
+        mainMenuNewCabinet.text = currentPack.mainMenuNewCabinet;
+        mainMenuLoadCabinet.text = currentPack.mainMenuLoadCabinet;
         mainMenuSettings.text = currentPack.mainMenuSettings;
         mainMenuExit.text = currentPack.mainMenuExit;
     }

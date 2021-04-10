@@ -18,6 +18,8 @@ public class GraphicsController : MonoBehaviour
         new Resolution(1920, 1080),
     };
 
+    bool setUserSettings;
+
     private void Awake()
     {
         Initialise();
@@ -41,13 +43,17 @@ public class GraphicsController : MonoBehaviour
         qualityDropdown.AddOptions(presetsList);
 
         Set_User_Settings();
+
+        confirmButton.gameObject.SetActive(false);
     }
 
     void Set_User_Settings()
     {
+        setUserSettings = true;
         qualityDropdown.value = userSettings.qualityPresetValue;
         resolutionDropdown.value = userSettings.resolutionValue;
         fullScreen.isOn = userSettings.fullScreen;
+        setUserSettings = false;
     }
 
     void Update_User_Settings()
@@ -70,7 +76,10 @@ public class GraphicsController : MonoBehaviour
 
     public void Changes_Made()
     {
+        if (setUserSettings)
+            return;
         confirmButton.gameObject.SetActive(true);
+        SoundRecorder.Play_Effect(GlobalVariables.CLICKEFFECT);
     }
 
     void Save_User_Settings()

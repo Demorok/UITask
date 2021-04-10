@@ -9,14 +9,16 @@ public class ExpandedCustomerCard : MonoBehaviour
     [SerializeField] Transform customerPlace;
     [SerializeField] Text customerPhrase;
 
+    GameObject queuedCard;
     GameObject customerCard;
 
-    public void Expand_Customer(Customer customer)
+    public void Expand_Customer(GameObject ethalon, Customer customer, string[] data)
     {
         gameObject.SetActive(true);
         customerCard = Instantiate(GlobalVariables.CUSTOMERPREFAB, customerPlace);
-        customerCard.GetComponent<CustomerCard>().Construct(customer);
-        customerPhrase.text = customer.customerPhrase;
+        customerCard.GetComponent<CustomerCard>().Construct(customer, data);
+        customerPhrase.text = data[1];
+        queuedCard = ethalon;
     }
 
     public void Close_Card()
@@ -24,5 +26,6 @@ public class ExpandedCustomerCard : MonoBehaviour
         manager.Continue();
         Destroy(customerCard);
         gameObject.SetActive(false);
+        CustomerQueue.removeQueue.Enqueue(queuedCard);
     }
 }

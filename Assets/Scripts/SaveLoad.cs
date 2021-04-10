@@ -39,3 +39,18 @@ public class SaveLoad
         }
     }
 }
+
+[System.Serializable]
+public class SaveData
+{
+    public int day;
+    public float deltaTime;
+    public Customer[] customers;
+
+    public SaveData(int day, float deltaTime, Customer[] customers)
+    {
+        this.day = day;
+        this.deltaTime = deltaTime;
+        this.customers = customers;
+    }
+}

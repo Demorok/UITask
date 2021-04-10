@@ -57,6 +57,8 @@ public class SettingsLanguage : LanguageController
 
     #endregion
 
+    bool initialise;
+
     protected override void Awake()
     {
         Initialise();
@@ -65,6 +67,7 @@ public class SettingsLanguage : LanguageController
 
     void Initialise()
     {
+        initialise = true;
         List<string> languagePacksList = new List<string>();
         foreach(LanguagePack pack in languagePacks)
         {
@@ -73,6 +76,7 @@ public class SettingsLanguage : LanguageController
         languageDropdown.AddOptions(languagePacksList);
 
         Set_User_Settings();
+        initialise = false;
     }
 
     void Set_User_Settings()
@@ -116,12 +120,15 @@ public class SettingsLanguage : LanguageController
 
     public void Change_Language()
     {
+        if (initialise)
+            return;
         foreach (Dropdown.OptionData data in qualityDropdown.options)
         {
             data.text = currentPack.Unmapping(data.text);
         }
         userSettings.languagePack = languagePacks[languageDropdown.value].packName;
         Save_User_Settings();
+        SoundRecorder.Play_Effect(GlobalVariables.CLICKEFFECT);
     }
 
     void Save_User_Settings()

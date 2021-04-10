@@ -11,10 +11,9 @@ public class CustomerCard : MonoBehaviour
     [SerializeField] protected Image kit;
     [SerializeField] protected Text customerName;
 
+    public int[] customerCode;
 
-    string customerPhrase;
-
-    public void Construct(Customer customer)
+    public void Construct(Customer customer, string[] data)
     {
         Sprite bodySprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERBODIES + customer.bodySpriteName);
         Sprite faceSprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERFACES + customer.faceSpriteName);
@@ -25,28 +24,35 @@ public class CustomerCard : MonoBehaviour
         face.sprite = faceSprite;
         hair.sprite = hairSprite;
         kit.sprite = kitSprite;
-        customerName.text = customer.customerName;
-        customerPhrase = customer.customerPhrase;
+
+        this.customerCode = customer.customerCode;
+
+        Update_Customer(data);
     }
 
-    public void Construct(string name, string phrase)
+    public void Construct(string[] data, int[] customerCode)
     {
         body.sprite = Preloader.bodies[Random.Range(0, Preloader.bodies.Length)];
         face.sprite = Preloader.faces[Random.Range(0, Preloader.faces.Length)];
         hair.sprite = Preloader.hairs[Random.Range(0, Preloader.hairs.Length)];
         kit.sprite = Preloader.kits[Random.Range(0, Preloader.kits.Length)];
-        customerName.text = name;
-        customerPhrase = phrase;
+        Update_Customer(data);
+        this.customerCode = customerCode;
+    }
+
+    public void Update_Customer(string[] data)
+    {
+        customerName.text = data[0];
     }
 
     public void Expand()
     {
-        CustomerQueue.destructQueue.Enqueue(gameObject);
+        CustomerQueue.expandQueue.Enqueue(gameObject);
     }
 
     public Customer Convert_Customer()
     {
-        return new Customer(body.sprite.name, face.sprite.name, hair.sprite.name, kit.sprite.name, customerName.text, customerPhrase);
+        return new Customer(body.sprite.name, face.sprite.name, hair.sprite.name, kit.sprite.name, customerCode);
     }
 }
 
@@ -57,16 +63,14 @@ public class Customer
     public string faceSpriteName;
     public string hairSpriteName;
     public string kitSpriteName;
-    public string customerName;
-    public string customerPhrase;
+    public int[] customerCode;
 
-    public Customer(string bodySpriteName, string faceSpriteName, string hairSpriteName, string kitSpriteName, string customerName, string customerPhrase)
+    public Customer(string bodySpriteName, string faceSpriteName, string hairSpriteName, string kitSpriteName, int[] customerCode)
     {
         this.bodySpriteName = bodySpriteName;
         this.faceSpriteName = faceSpriteName;
         this.hairSpriteName = hairSpriteName;
         this.kitSpriteName = kitSpriteName;
-        this.customerName = customerName;
-        this.customerPhrase = customerPhrase;
+        this.customerCode = customerCode;
     }
 }

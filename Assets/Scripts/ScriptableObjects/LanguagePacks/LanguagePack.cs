@@ -13,7 +13,8 @@ public class LanguagePack : ScriptableObject
     [Header("Main menu")]
 
     public string mainMenuTitle;
-    public string mainMenuCabinet;
+    public string mainMenuNewCabinet;
+    public string mainMenuLoadCabinet;
     public string mainMenuSettings;
     public string mainMenuExit;
 
@@ -71,6 +72,8 @@ public class LanguagePack : ScriptableObject
     public string cabinetTitle;
     public string cabinetDay;
     public string cabinetSkipDay;
+    public string cabinetSave;
+    public string cabinetMainMenu;
 
     public string[] customerNames;
     public string[] customerSurnames;

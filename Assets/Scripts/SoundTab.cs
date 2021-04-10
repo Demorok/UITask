@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundController : MonoBehaviour
-{
-    [SerializeField] AudioSource effectsSound;
-    [SerializeField] Slider effectsVolumeSlider;
-    [SerializeField] AudioSource musicSound;
+public class SoundTab : MonoBehaviour
+{    [SerializeField] Slider effectsVolumeSlider;
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] UserSettings userSettings;
 
@@ -24,7 +19,6 @@ public class SoundController : MonoBehaviour
         effectsVolumeSlider.value = userSettings.soundSettings.effectsVolume;
         musicVolumeSlider.value = userSettings.soundSettings.musicVolume;
         setUserSettings = false;
-        Change_Volume();
     }
 
     public void Change_Volume_Settings()
@@ -33,13 +27,7 @@ public class SoundController : MonoBehaviour
             return;
         userSettings.soundSettings.effectsVolume = effectsVolumeSlider.value;
         userSettings.soundSettings.musicVolume = musicVolumeSlider.value;
-        Change_Volume();
-    }
-
-    void Change_Volume()
-    {
-        effectsSound.volume = userSettings.soundSettings.effectsVolume;
-        musicSound.volume = userSettings.soundSettings.musicVolume;
+        SoundRecorder.Play_Effect(GlobalVariables.CLICKEFFECT);
     }
 
 

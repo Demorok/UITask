@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 869887606726780061}
   - component: {fileID: 869887606726780062}
   - component: {fileID: -4956621145629063882}
+  - component: {fileID: 4487752815460735715}
   m_Layer: 5
   m_Name: Customer
   m_TagString: Untagged
@@ -478,6 +479,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4487752815460735715}
+        m_TargetAssemblyTypeName: SoundRecorder, Assembly-CSharp
+        m_MethodName: Play_Effect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 32a432f41041fed40aa1ff592fa6a3cf, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-4956621145629063882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +508,19 @@ MonoBehaviour:
   hair: {fileID: 869887605656867508}
   kit: {fileID: 869887605808610926}
   customerName: {fileID: 869887605789047851}
+  customerCode: 
+--- !u!114 &4487752815460735715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869887606726780032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b098ad818938c429f3192402fda596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &869887606978812806
 GameObject:
   m_ObjectHideFlags: 0
