@@ -4,56 +4,37 @@ using System.Collections.Generic;
 
 public class SettingsLanguage : LanguageController
 {
-    [SerializeField] Dropdown languageDropdown;
-
-    [SerializeField] Dropdown qualityDropdown;
-
     [SerializeField] Text settingsTitle;
-
     [SerializeField] Text settingsBack;
 
     #region SoundTab
     [Header("Sound Tab")]
 
-    [SerializeField]
-    Text settingsSoundTab;
-
-    [SerializeField]
-    Text settingsEffectsVolume;
-
-    [SerializeField]
-    Text settingsMusicVolume;
+    [SerializeField] Text settingsSoundTab;
+    [SerializeField] Text settingsEffectsVolume;
+    [SerializeField] Text settingsMusicVolume;
 
     #endregion
 
     #region GraphicsTab
     [Header("Graphics Tab")]
 
-    [SerializeField]
-    Text settingsGraphicsTab;
-
-    [SerializeField]
-    Text settingsQuality;
-
-    [SerializeField]
-    Text settingsFullScreen;
-
-    [SerializeField]
-    Text settingsResolution;
-
-    [SerializeField]
-    Text settingsConfirm;
+    [SerializeField] Text settingsGraphicsTab;
+    [SerializeField] Text settingsQuality;
+    [SerializeField] Dropdown qualityDropdown;
+    [SerializeField] Text settingsFullScreen;
+    [SerializeField] Text settingsResolution;
+    [SerializeField] Dropdown resolutionDropdown;
+    [SerializeField] Text settingsConfirm;
 
     #endregion
 
     #region LanguageTab
     [Header("Language Tab")]
 
-    [SerializeField]
-    Text settingsLanguageTab;
-
-    [SerializeField]
-    Text settingsLanguage;
+    [SerializeField] Text settingsLanguageTab;
+    [SerializeField] Text settingsLanguage;
+    [SerializeField] Dropdown languageDropdown;
 
     #endregion
 
@@ -61,22 +42,43 @@ public class SettingsLanguage : LanguageController
 
     protected override void Awake()
     {
-        Initialise();
         base.Awake();
+        Initialise();
     }
 
     void Initialise()
     {
         initialise = true;
+        Set_Dropdown_Options();
+        Set_User_Settings();
+        initialise = false;
+    }
+
+    void Set_Dropdown_Options()
+    {
+        //language Dropdown
         List<string> languagePacksList = new List<string>();
-        foreach(LanguagePack pack in languagePacks)
+        foreach (LanguagePack pack in languagePacks)
         {
             languagePacksList.Add(pack.packName);
         }
         languageDropdown.AddOptions(languagePacksList);
 
-        Set_User_Settings();
-        initialise = false;
+        //resolutions Dropdown
+        List<string> resolutionsList = new List<string>();
+        foreach (Resolution res in GlobalVariables.RESOLUTIONS)
+        {
+            resolutionsList.Add(res.ToString());
+        }
+        resolutionDropdown.AddOptions(resolutionsList);
+
+        //quality Dropdown
+        List<string> qualityList = new List<string>();
+        foreach (string name in QualitySettings.names)
+        {
+            qualityList.Add(currentPack.Mapping(name));
+        }
+        qualityDropdown.AddOptions(qualityList);
     }
 
     void Set_User_Settings()
@@ -90,7 +92,6 @@ public class SettingsLanguage : LanguageController
             }
         }
     }
-
     protected override void Reload()
     {
         base.Reload();
@@ -111,21 +112,14 @@ public class SettingsLanguage : LanguageController
         settingsLanguageTab.text = currentPack.settingsLanguageTab;
         settingsLanguage.text = currentPack.settingsLanguage;
 
-        foreach (Dropdown.OptionData data in qualityDropdown.options)
-        {
-            data.text = currentPack.Mapping(data.text);
-        }
-        qualityDropdown.RefreshShownValue();
+        Map_Dropdown_Options();
     }
 
     public void Change_Language()
     {
         if (initialise)
             return;
-        foreach (Dropdown.OptionData data in qualityDropdown.options)
-        {
-            data.text = currentPack.Unmapping(data.text);
-        }
+        Unmap_Dropdown_Options();
         userSettings.languagePack = languagePacks[languageDropdown.value].packName;
         Save_User_Settings();
         SoundRecorder.Play_Effect(GlobalVariables.CLICKEFFECT);
@@ -135,5 +129,23 @@ public class SettingsLanguage : LanguageController
     {
         string destination = Application.persistentDataPath + GlobalVariables.SETTINGSPATH;
         SaveLoad.Save_Data(destination, userSettings);
+    }
+    private void Map_Dropdown_Options()
+    {
+        //quality Dropdown
+        foreach (Dropdown.OptionData data in qualityDropdown.options)
+        {
+            data.text = currentPack.Mapping(data.text);
+        }
+        qualityDropdown.RefreshShownValue();
+    }
+
+    void Unmap_Dropdown_Options()
+    {
+        //quality Dropdown
+        foreach (Dropdown.OptionData data in qualityDropdown.options)
+        {
+            data.text = currentPack.Unmapping(data.text);
+        }
     }
 }

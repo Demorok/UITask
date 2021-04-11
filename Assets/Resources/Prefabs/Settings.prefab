@@ -1187,6 +1187,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6306613948194355625}
+        m_TargetAssemblyTypeName: SoundRecorder, Assembly-CSharp
+        m_MethodName: Play_Effect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 32a432f41041fed40aa1ff592fa6a3cf, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!114 &4449441552694794185
 MonoBehaviour:
@@ -1204,7 +1216,6 @@ MonoBehaviour:
   qualityDropdown: {fileID: 4449441553840876650}
   fullScreen: {fileID: 4449441552882210360}
   confirmButton: {fileID: 4449441554311537104}
-  userSettings: {fileID: 11400000, guid: d6b2ddb093f731c43b0a515268a953b4, type: 2}
 --- !u!1 &4449441552727343852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,7 +3830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectsVolumeSlider: {fileID: 4449441552857921748}
   musicVolumeSlider: {fileID: 4449441552807304428}
-  userSettings: {fileID: 11400000, guid: d6b2ddb093f731c43b0a515268a953b4, type: 2}
 --- !u!1 &4449441553451731752
 GameObject:
   m_ObjectHideFlags: 0
@@ -6283,12 +6293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda4fd4d5c5187a448bb2713b7778c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userSettings: {fileID: 11400000, guid: d6b2ddb093f731c43b0a515268a953b4, type: 2}
-  languagePacks:
-  - {fileID: 11400000, guid: 4ec816281d745ff43bcc865dc4b19890, type: 2}
-  - {fileID: 11400000, guid: 58d5d47be326deb439a6a5f579f1f6a0, type: 2}
-  languageDropdown: {fileID: 4449441553223616841}
-  qualityDropdown: {fileID: 4449441553840876650}
   settingsTitle: {fileID: 4449441553281300896}
   settingsBack: {fileID: 4449441552551920404}
   settingsSoundTab: {fileID: 4449441553514551761}
@@ -6296,11 +6300,14 @@ MonoBehaviour:
   settingsMusicVolume: {fileID: 4449441553451731754}
   settingsGraphicsTab: {fileID: 4449441554146503256}
   settingsQuality: {fileID: 4449441553612695710}
+  qualityDropdown: {fileID: 4449441553840876650}
   settingsFullScreen: {fileID: 4449441552754221230}
   settingsResolution: {fileID: 4449441552278135234}
+  resolutionDropdown: {fileID: 4449441553825800034}
   settingsConfirm: {fileID: 4449441552928099677}
   settingsLanguageTab: {fileID: 4449441552750412993}
   settingsLanguage: {fileID: 4449441553460120681}
+  languageDropdown: {fileID: 4449441553223616841}
 --- !u!114 &6306613948194355625
 MonoBehaviour:
   m_ObjectHideFlags: 0

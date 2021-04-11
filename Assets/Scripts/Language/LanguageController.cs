@@ -4,14 +4,14 @@ using UnityEngine;
 
 public abstract class LanguageController : MonoBehaviour
 {
-    [SerializeField] protected UserSettings userSettings;
-
-    [SerializeField] protected LanguagePack[] languagePacks;
-
+    protected UserSettings userSettings;    
+    protected List<LanguagePack> languagePacks;
     protected LanguagePack currentPack;
 
     protected virtual void Awake()
     {
+        userSettings = GlobalVariables.SOUSERSETTINGS;
+        languagePacks = GlobalVariables.SOLANGUAGEPACKS;
         Reload();
     }
 
@@ -27,13 +27,6 @@ public abstract class LanguageController : MonoBehaviour
     }
     void Set_Language_Pack()
     {
-        foreach (LanguagePack pack in languagePacks)
-        {
-            if (pack.packName == userSettings.languagePack)
-            {
-                currentPack = pack;
-                break;
-            }
-        }
+        currentPack = languagePacks.Find(pack => pack.packName == userSettings.languagePack);
     }
 }

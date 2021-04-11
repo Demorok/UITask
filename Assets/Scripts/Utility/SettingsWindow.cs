@@ -9,7 +9,7 @@ public class SettingsWindow : MonoBehaviour
 
     public static void Call_Settings(Transform transform)
     {
-        settings = Instantiate<GameObject>(GlobalVariables.SETTINGSPREFAB, transform);
+        settings = Instantiate(GlobalVariables.SETTINGSPREFAB, transform);
         currentScale = Time.timeScale;
         Time.timeScale = 0;
     }

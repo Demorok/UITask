@@ -9,42 +9,14 @@ public class GraphicsController : MonoBehaviour
     [SerializeField] Toggle fullScreen;
     [SerializeField] Button confirmButton;
 
-    [SerializeField] UserSettings userSettings;
-
-    static Resolution[] RESOLUTIONS = new Resolution[]
-    {
-        new Resolution(1280, 720),
-        new Resolution(1600, 900),
-        new Resolution(1920, 1080),
-    };
+    UserSettings userSettings;
 
     bool setUserSettings;
 
     private void Awake()
     {
-        Initialise();
-    }
-
-    void Initialise()
-    {
-        List<string> resolutionsList = new List<string>();
-        foreach(Resolution res in RESOLUTIONS)
-        {
-            resolutionsList.Add(res.ToString());
-        }
-        resolutionDropdown.AddOptions(resolutionsList);
-
-        List<string> presetsList = new List<string>();
-
-        foreach(string name in QualitySettings.names)
-        {
-            presetsList.Add(name);
-        }
-        qualityDropdown.AddOptions(presetsList);
-
+        userSettings = GlobalVariables.SOUSERSETTINGS;
         Set_User_Settings();
-
-        confirmButton.gameObject.SetActive(false);
     }
 
     void Set_User_Settings()
@@ -66,7 +38,7 @@ public class GraphicsController : MonoBehaviour
 
     public void Confirm_Changes()
     {
-        Resolution res = RESOLUTIONS[resolutionDropdown.value];
+        Resolution res = GlobalVariables.RESOLUTIONS[resolutionDropdown.value];
         Screen.SetResolution(res.width, res.height, fullScreen.isOn);
         QualitySettings.SetQualityLevel(qualityDropdown.value, true);
 
@@ -88,7 +60,7 @@ public class GraphicsController : MonoBehaviour
         SaveLoad.Save_Data(destination, userSettings);
     }
 }
-class Resolution
+public class Resolution
 {
     public int width, height;
 

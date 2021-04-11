@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class CustomerQueue : MonoBehaviour
 {
     [SerializeField] Transform[] places;
-    [SerializeField] ExpandedCustomerCard expandedCustomerCard;
-    [SerializeField] CabinetLanguage lang;
-
     [SerializeField] Text dayMinutes;
     [SerializeField] Text daySeconds;
     [SerializeField] float minutesInDay;
@@ -19,8 +16,6 @@ public class CustomerQueue : MonoBehaviour
     float endOfDay;
 
     public List<GameObject> customers = new List<GameObject>();
-
-    public static Queue<GameObject> expandQueue = new Queue<GameObject>();
     public static Queue<GameObject> removeQueue = new Queue<GameObject>();
 
     private void Update()
@@ -80,7 +75,6 @@ public class CustomerQueue : MonoBehaviour
     void Start_New_Day()
     {
         ++day;
-        lang.Set_Day();
         Start_Timer();
         Spawn_Customers();
     }
@@ -117,8 +111,6 @@ public class CustomerQueue : MonoBehaviour
 
     void Check_Customer_Queue()
     {
-        if (expandQueue.Count > 0)
-            Expand_Customer(expandQueue.Dequeue());
         if (removeQueue.Count > 0)
             Remove_Customer(removeQueue.Dequeue());
     }
@@ -130,8 +122,7 @@ public class CustomerQueue : MonoBehaviour
         {
             GameObject clone =  Instantiate(GlobalVariables.CUSTOMERPREFAB, place);
             customers.Add(clone);
-            int[] customerCode = lang.Generate_Customer_Code();
-            clone.GetComponent<CustomerCard>().Construct(lang.Get_Texts_By_Code(customerCode), customerCode);
+            clone.GetComponent<CustomerCard>().Construct();
         }
     }
 
@@ -142,7 +133,7 @@ public class CustomerQueue : MonoBehaviour
         {
             GameObject clone = Instantiate(GlobalVariables.CUSTOMERPREFAB, places[i]);
             customers.Add(clone);
-            clone.GetComponent<CustomerCard>().Construct(customersData[i], lang.Get_Texts_By_Code(customersData[i].customerCode));
+            clone.GetComponent<CustomerCard>().Construct(customersData[i]);
         }
     }
 
@@ -153,7 +144,6 @@ public class CustomerQueue : MonoBehaviour
             Destroy(customer);
         }
         customers.Clear();
-        expandQueue.Clear();
     }
 
     void Update_Customers_Position()
@@ -164,17 +154,9 @@ public class CustomerQueue : MonoBehaviour
         }
     }
 
-    void Expand_Customer(GameObject customer)
-    {
-        Pause();
-        CustomerCard card = customer.GetComponent<CustomerCard>();
-        expandedCustomerCard.Expand_Customer(customer, card.Convert_Customer(), lang.Get_Texts_By_Code(card.customerCode));
-    }
-
     void Remove_Customer(GameObject customer)
     {
         customers.Remove(customer);
         Update_Customers_Position();
-        Destroy(customer);
     }
 }

@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class SoundPlayer : MonoBehaviour
 {
-    [SerializeField] UserSettings userSettings;
     [SerializeField] AudioSource effectsSound;
     [SerializeField] AudioSource musicSound;
 
+    UserSettings userSettings;
+
     static public Queue<AudioClip> effectsQueue = new Queue<AudioClip>();
     static public Queue<AudioClip> musicQueue = new Queue<AudioClip>();
+
+    private void Awake()
+    {
+        userSettings = GlobalVariables.SOUSERSETTINGS;
+    }
 
     void Update()
     {
@@ -19,8 +25,10 @@ public class SoundPlayer : MonoBehaviour
 
     void Check_Effects_Queue()
     {
-        if (effectsQueue.Count > 0)
+        while (effectsQueue.Count > 0)
+        {
             effectsSound.PlayOneShot(effectsQueue.Dequeue(), userSettings.soundSettings.effectsVolume);
+        }
     }
 
     void Check_Music_Queue()

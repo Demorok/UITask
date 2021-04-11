@@ -4,17 +4,13 @@ using UnityEngine;
 public class Preloader : MonoBehaviour
 {
     [SerializeField] GameObject startScreen;
-    [SerializeField] UserSettings userSettings;
 
-    public static Sprite[] bodies;
-    public static Sprite[] faces;
-    public static Sprite[] hairs;
-    public static Sprite[] kits;
+    UserSettings userSettings;
 
     private void Awake()
     {
+        userSettings = GlobalVariables.SOUSERSETTINGS;
         Load_User_Settings();
-        Load_Customer_Constructor();
         Create_Save_Directory();
         startScreen.SetActive(true);
         SoundRecorder.Play_Music(GlobalVariables.MAINMENUMUSIC);
@@ -31,13 +27,5 @@ public class Preloader : MonoBehaviour
         SaveLoad.Load_Data(destination, userSettings);
 
         QualitySettings.SetQualityLevel(userSettings.qualityPresetValue, true);
-    }
-
-    void Load_Customer_Constructor()
-    {
-        bodies = Resources.LoadAll<Sprite>(GlobalVariables.CUSTOMERBODIES);
-        faces = Resources.LoadAll<Sprite>(GlobalVariables.CUSTOMERFACES);
-        hairs = Resources.LoadAll<Sprite>(GlobalVariables.CUSTOMERHAIRS);
-        kits = Resources.LoadAll<Sprite>(GlobalVariables.CUSTOMERKITS);
     }
 }

@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SoundTab : MonoBehaviour
-{    [SerializeField] Slider effectsVolumeSlider;
+{    
+    [SerializeField] Slider effectsVolumeSlider;
     [SerializeField] Slider musicVolumeSlider;
-    [SerializeField] UserSettings userSettings;
+    
+    UserSettings userSettings;
 
     bool setUserSettings;
 
     private void Awake()
     {
+        userSettings = GlobalVariables.SOUSERSETTINGS;
         Set_User_Settings();
     }
 
@@ -29,8 +32,6 @@ public class SoundTab : MonoBehaviour
         userSettings.soundSettings.musicVolume = musicVolumeSlider.value;
         SoundRecorder.Play_Effect(GlobalVariables.CLICKEFFECT);
     }
-
-
 }
 
 [System.Serializable]

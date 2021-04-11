@@ -57,10 +57,10 @@ public class LanguagePack : ScriptableObject
 
     [Header("Graphics Quality Mapping")]
 
+    public string veryHighGraphicsQuality;
     public string highGraphicsQuality;
     public string mediumGraphicsQuality;
     public string lowGraphicsQuality;
-    public string veryHighGraphicsQuality;
 
     #endregion
 
@@ -86,17 +86,17 @@ public class LanguagePack : ScriptableObject
         string result;
         switch (value)
         {
-            case "High":
+            case GlobalVariables.VERYHIGHQUALITYMAPPING:
+                result = veryHighGraphicsQuality;
+                break;
+            case GlobalVariables.HIGHQUALITYMAPPING:
                 result = highGraphicsQuality;
                 break;
-            case "Medium":
+            case GlobalVariables.MEDIUMQUALITYMAPPING:
                 result = mediumGraphicsQuality;
                 break;
-            case "Low":
+            case GlobalVariables.LOWQUALITYMAPPING:
                 result = lowGraphicsQuality;
-                break;
-            case "Very High":
-                result = veryHighGraphicsQuality;
                 break;
             default:
                 result = value;
@@ -107,14 +107,14 @@ public class LanguagePack : ScriptableObject
 
     public string Unmapping(string value)
     {
-        if (value == highGraphicsQuality)
-            return "High";
+        if (value == veryHighGraphicsQuality)
+            return GlobalVariables.VERYHIGHQUALITYMAPPING;
+        else if (value == highGraphicsQuality)
+            return GlobalVariables.HIGHQUALITYMAPPING;
         else if (value == mediumGraphicsQuality)
-            return "Medium";
+            return GlobalVariables.MEDIUMQUALITYMAPPING;
         else if (value == lowGraphicsQuality)
-            return "Low";
-        else if (value == veryHighGraphicsQuality)
-            return "Very High";
+            return GlobalVariables.LOWQUALITYMAPPING;
         else return value;
     }
 }
