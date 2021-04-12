@@ -1,12 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Animations;
+using System.Collections;
 
 public class CustomerQueue : MonoBehaviour
 {
     [SerializeField] Transform[] places;
+    [SerializeField] Transform spawner;
     [SerializeField] Text dayMinutes;
     [SerializeField] Text daySeconds;
     [SerializeField] float minutesInDay;
@@ -88,9 +89,9 @@ public class CustomerQueue : MonoBehaviour
 
     void Update_Time()
     {
-        float timeLeft = endOfDay - Time.time;
-        int minutes = (int)(timeLeft / 60);
-        int seconds = (int)(timeLeft % 60);
+        int timeLeft = Mathf.CeilToInt(endOfDay - Time.time);
+        int minutes = timeLeft / 60;
+        int seconds = timeLeft % 60;
         string sec = seconds.ToString().Length > 1 ? seconds.ToString() : "0" + seconds.ToString();
         dayMinutes.text = minutes.ToString();
         daySeconds.text = sec;
@@ -118,12 +119,13 @@ public class CustomerQueue : MonoBehaviour
     void Spawn_Customers()
     {
         Clear_Queue();
-        foreach (Transform place in places)
+        for (int i = 0; i < places.Length; i++)
         {
-            GameObject clone =  Instantiate(GlobalVariables.CUSTOMERPREFAB, place);
+            GameObject clone =  Instantiate(GlobalVariables.CUSTOMERPREFAB, spawner);
             customers.Add(clone);
             clone.GetComponent<CustomerCard>().Construct();
         }
+        Update_Customers_Position();
     }
 
     void Spawn_Customers(Customer[] customersData)
@@ -131,10 +133,11 @@ public class CustomerQueue : MonoBehaviour
         Clear_Queue();
         for (int i = 0; i < customersData.Length; i++)
         {
-            GameObject clone = Instantiate(GlobalVariables.CUSTOMERPREFAB, places[i]);
+            GameObject clone = Instantiate(GlobalVariables.CUSTOMERPREFAB, spawner);
             customers.Add(clone);
             clone.GetComponent<CustomerCard>().Construct(customersData[i]);
         }
+        Update_Customers_Position();
     }
 
     void Clear_Queue()
@@ -148,15 +151,22 @@ public class CustomerQueue : MonoBehaviour
 
     void Update_Customers_Position()
     {
-        for(int i = 0; i < customers.Count; i++)
-        {
-            customers[i].transform.position = places[i].position;
-        }
+        StartCoroutine("Update_Customers_Position_Coroutine");
     }
 
     void Remove_Customer(GameObject customer)
     {
         customers.Remove(customer);
         Update_Customers_Position();
+    }
+
+    IEnumerator Update_Customers_Position_Coroutine()
+    {
+        for (int i = 0; i < customers.Count; i++)
+        {
+            customers[i].MoveObject(places[i].position);
+            yield return new WaitForSeconds(0.1f);
+        }
+            
     }
 }

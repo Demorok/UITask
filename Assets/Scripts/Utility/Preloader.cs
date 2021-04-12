@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.IO;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class Preloader : MonoBehaviour
         Create_Save_Directory();
         startScreen.SetActive(true);
         SoundRecorder.Play_Music(GlobalVariables.MAINMENUMUSIC);
+        DOTween.Init(true, true, LogBehaviour.ErrorsOnly);
     }
 
     void Create_Save_Directory()

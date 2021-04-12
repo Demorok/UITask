@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Animations;
 
 public class SettingsWindow : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class SettingsWindow : MonoBehaviour
 
     public static void Close_Settings()
     {
-        Destroy(settings);
         Time.timeScale = currentScale;
+        settings.Destroy_Window_X();
     }
 }
