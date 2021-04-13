@@ -10,11 +10,11 @@ public class CustomerCard : MonoBehaviour
     [SerializeField] protected Image kit;
     public int[] customerCode;
 
-    CustomerCardLanguage customerCardLanguage;
+    protected CustomerCardLanguage ñardLanguage;
 
     private void Awake()
     {
-        customerCardLanguage = GetComponent<CustomerCardLanguage>();
+        ñardLanguage = GetComponent<CustomerCardLanguage>();
     }
 
     public void Construct(Customer customer)
@@ -24,7 +24,7 @@ public class CustomerCard : MonoBehaviour
         hair.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERHAIRSPATH + customer.hairSpriteName);
         kit.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERKITSPATH + customer.kitSpriteName);
         customerCode = customer.customerCode;
-        customerCardLanguage.Update_Name_By_Code();
+        ñardLanguage.Update_Name_By_Code();
     }
 
     public void Construct()
@@ -33,8 +33,8 @@ public class CustomerCard : MonoBehaviour
         face.sprite = GlobalVariables.CUSTOMERFACES[Random.Range(0, GlobalVariables.CUSTOMERFACES.Length)];
         hair.sprite = GlobalVariables.CUSTOMERHAIRS[Random.Range(0, GlobalVariables.CUSTOMERHAIRS.Length)];
         kit.sprite = GlobalVariables.CUSTOMERKITS[Random.Range(0, GlobalVariables.CUSTOMERKITS.Length)];
-        customerCode = customerCardLanguage.Generate_Customer_Code();
-        customerCardLanguage.Update_Name_By_Code();
+        customerCode = ñardLanguage.Generate_Customer_Code();
+        ñardLanguage.Update_Name_By_Code();
     }
 
     public void Expand()
@@ -43,7 +43,7 @@ public class CustomerCard : MonoBehaviour
         expandedCard.GetComponent<ExpandedCustomerCard>().Construct(Convert_Customer(), gameObject);
     }
 
-    private void OnDestroy()
+    public void Remove_Customer()
     {
         CustomerQueue.removeQueue.Enqueue(gameObject);
     }

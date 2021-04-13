@@ -1,37 +1,35 @@
 using UnityEngine;
+using Animations;
 
 [RequireComponent(typeof(ExpandedCustomerCardLanguage))]
 public class ExpandedCustomerCard : CustomerCard
 {
-    GameObject customerCard;
+    [SerializeField] GameObject card;
 
+    GameObject customerCard;
     float currentTimeScale;
 
-    ExpandedCustomerCardLanguage expandedCardLanguage;
+    ExpandedCustomerCardLanguage exCardLanguage;
 
     private void Awake()
     {
-        expandedCardLanguage = GetComponent<ExpandedCustomerCardLanguage>();
+        ñardLanguage = GetComponent<ExpandedCustomerCardLanguage>();
+        exCardLanguage = (ExpandedCustomerCardLanguage)ñardLanguage;
     }
 
     public void Construct(Customer customer, GameObject ethalon)
     {
-        Pause();
-        body.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERBODIESPATH + customer.bodySpriteName);
-        face.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERFACESPATH + customer.faceSpriteName);
-        hair.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERHAIRSPATH + customer.hairSpriteName);
-        kit.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERKITSPATH + customer.kitSpriteName);
-        customerCode = customer.customerCode;
-        expandedCardLanguage.Update_Name_By_Code();
-        expandedCardLanguage.Update_Phrase_By_Code();
+        card.Open_Window_X(() => Pause());
+        Construct(customer);
+        exCardLanguage.Update_Phrase_By_Code();
         customerCard = ethalon;
     }
 
     public void Close_Card()
     {
-        Destroy(customerCard);
+        customerCard.GetComponent<CustomerCard>().Remove_Customer();
         Continue();
-        Destroy(gameObject);
+        card.Destroy_Window_X(() => Destroy(gameObject));
     }
 
     void Pause()

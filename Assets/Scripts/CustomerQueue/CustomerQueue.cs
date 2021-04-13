@@ -157,6 +157,7 @@ public class CustomerQueue : MonoBehaviour
     void Remove_Customer(GameObject customer)
     {
         customers.Remove(customer);
+        Destroy(customer);
         Update_Customers_Position();
     }
 

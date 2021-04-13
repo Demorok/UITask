@@ -10,7 +10,7 @@ public class SettingsWindow : MonoBehaviour
     {
         settings = Instantiate(GlobalVariables.SETTINGSPREFAB, transform);
         currentScale = Time.timeScale;
-        Time.timeScale = 0;
+        settings.Open_Window_X(() => Time.timeScale = 0);
     }
 
     public static void Close_Settings()

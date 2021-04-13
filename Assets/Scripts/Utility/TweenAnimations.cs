@@ -14,8 +14,22 @@ namespace Animations
 
         public static void Destroy_Window_X(this GameObject window, float duration = DEFAULTDURATION)
         {
-            Vector3 originalScale = window.transform.localScale;
-            window.transform.DOScale(new Vector3(0, originalScale.y, originalScale.z), duration).OnComplete(() => Object.Destroy(window));
+            window.transform.DOScaleX(0, duration).OnComplete(() => Object.Destroy(window));
+        }
+
+        public static void Destroy_Window_X(this GameObject window, TweenCallback callback, float duration = DEFAULTDURATION)
+        {
+            window.transform.DOScaleX(0, duration).OnComplete(() => Object.Destroy(window)).OnComplete(callback);
+        }
+
+        public static void Open_Window_X(this GameObject window, float duration = DEFAULTDURATION)
+        {
+            window.transform.DOScaleX(window.transform.localScale.x, duration).From(0);
+        }
+
+        public static void Open_Window_X(this GameObject window, TweenCallback callback, float duration = DEFAULTDURATION)
+        {
+            window.transform.DOScaleX(window.transform.localScale.x, duration).From(0).OnComplete(callback);
         }
     }
 }
