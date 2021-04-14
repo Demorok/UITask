@@ -31,5 +31,10 @@ namespace Animations
         {
             window.transform.DOScaleX(window.transform.localScale.x, duration).From(0).OnComplete(callback);
         }
+
+        public static void Stop_Ainmation(this GameObject gameObject)
+        {
+            gameObject.transform.DOKill();
+        }
     }
 }

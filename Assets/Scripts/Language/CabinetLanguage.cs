@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,14 +16,15 @@ public class CabinetLanguage : LanguageController
         base.Reload();
 
         cabinetTitle.text = currentPack.cabinetTitle;
-        cabinetDay.text = currentPack.cabinetDay + " " + CustomerQueue.day;
         cabinetSkipDay.text = currentPack.cabinetSkipDay;
         cabinetSave.text = currentPack.cabinetSave;
         cabinetMainMenu.text = currentPack.cabinetMainMenu;
+        Update_Day();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (currentDay != CustomerQueue.day)
             Update_Day();
     }

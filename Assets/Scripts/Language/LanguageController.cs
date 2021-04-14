@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public abstract class LanguageController : MonoBehaviour
         Reload();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (currentPack.packName != userSettings.languagePack)
             Reload();

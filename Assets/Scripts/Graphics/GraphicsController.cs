@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,7 +40,6 @@ public class GraphicsController : MonoBehaviour
         Resolution res = GlobalVariables.RESOLUTIONS[resolutionDropdown.value];
         Screen.SetResolution(res.width, res.height, fullScreen.isOn);
         QualitySettings.SetQualityLevel(qualityDropdown.value, true);
-
         Update_User_Settings();
         confirmButton.gameObject.SetActive(false);
     }
@@ -58,21 +56,6 @@ public class GraphicsController : MonoBehaviour
     {
         string destination = Application.persistentDataPath + GlobalVariables.SETTINGSPATH;
         SaveLoad.Save_Data(destination, userSettings);
-    }
-}
-public class Resolution
-{
-    public int width, height;
-
-    public Resolution (int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-    }
-
-    public override string ToString()
-    {
-        return width.ToString() + "x" + height.ToString();
     }
 }
 

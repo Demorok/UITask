@@ -46,6 +46,10 @@ public class CustomerQueue : MonoBehaviour
     {
         endOfDay = Time.time + timerSec;
     }
+    void Start_Timer()
+    {
+        endOfDay = Time.time + minutesInDay * 60;
+    }
     public void Save_Progress()
     {
         SaveData progress = current_Progress();
@@ -105,11 +109,6 @@ public class CustomerQueue : MonoBehaviour
         }
     }
 
-    void Start_Timer()
-    {
-        endOfDay = Time.time + minutesInDay * 60;
-    }
-
     void Check_Customer_Queue()
     {
         if (removeQueue.Count > 0)
@@ -142,8 +141,10 @@ public class CustomerQueue : MonoBehaviour
 
     void Clear_Queue()
     {
+        StopCoroutine("Update_Customers_Position_Coroutine");
         foreach (GameObject customer in customers)
         {
+            customer.Stop_Ainmation();
             Destroy(customer);
         }
         customers.Clear();
