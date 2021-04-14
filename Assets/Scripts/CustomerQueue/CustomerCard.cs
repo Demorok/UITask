@@ -19,21 +19,25 @@ public class CustomerCard : MonoBehaviour
 
     public void Construct(Customer customer)
     {
+        customerCode = customer.customerCode;
         body.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERBODIESPATH + customer.bodySpriteName);
         face.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERFACESPATH + customer.faceSpriteName);
-        hair.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERHAIRSPATH + customer.hairSpriteName);
-        kit.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERKITSPATH + customer.kitSpriteName);
-        customerCode = customer.customerCode;
+        hair.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERHAIRSPATH + GlobalVariables.SEXHAIRPATH[customerCode[0]] + customer.hairSpriteName);
+        kit.sprite = Resources.Load<Sprite>(GlobalVariables.CUSTOMERKITSPATH + GlobalVariables.SEXKITPATH[customerCode[0]] + customer.kitSpriteName);
         ñardLanguage.Update_Name_By_Code();
     }
 
     public void Construct()
     {
+        customerCode = ñardLanguage.Generate_Customer_Code();
+        Sprite[] hairs = GlobalVariables.CUSTOMERHAIRS[customerCode[0]];
+        Sprite[] kits = GlobalVariables.CUSTOMERKITS[customerCode[0]];
+
         body.sprite = GlobalVariables.CUSTOMERBODIES[Random.Range(0, GlobalVariables.CUSTOMERBODIES.Length)];
         face.sprite = GlobalVariables.CUSTOMERFACES[Random.Range(0, GlobalVariables.CUSTOMERFACES.Length)];
-        hair.sprite = GlobalVariables.CUSTOMERHAIRS[Random.Range(0, GlobalVariables.CUSTOMERHAIRS.Length)];
-        kit.sprite = GlobalVariables.CUSTOMERKITS[Random.Range(0, GlobalVariables.CUSTOMERKITS.Length)];
-        customerCode = ñardLanguage.Generate_Customer_Code();
+        hair.sprite = hairs[Random.Range(0, hairs.Length)];
+        kit.sprite = kits[Random.Range(0, kits.Length)];
+
         ñardLanguage.Update_Name_By_Code();
     }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,8 @@ public class GlobalVariables : MonoBehaviour
     public const string CUSTOMERFACESPATH = "Sprites/Customers/Faces/";
     public const string CUSTOMERHAIRSPATH = "Sprites/Customers/Hairs/";
     public const string CUSTOMERKITSPATH = "Sprites/Customers/Kits/";
+    public static string[] SEXHAIRPATH = new string[] { "FemaleHairs/", "MaleHairs/" };
+    public static string[] SEXKITPATH = new string[] { "FemaleKits/", "MaleKits/" };
 
     public static GameObject CUSTOMERPREFAB = Resources.Load<GameObject>("Prefabs/Customer");
     public static GameObject EXPANDEDCUSTOMERPREFAB = Resources.Load<GameObject>("Prefabs/ExpandedCustomer");
@@ -29,8 +30,8 @@ public class GlobalVariables : MonoBehaviour
     //CustomerCards sprites
     public static Sprite[] CUSTOMERBODIES = Resources.LoadAll<Sprite>(CUSTOMERBODIESPATH);
     public static Sprite[] CUSTOMERFACES = Resources.LoadAll<Sprite>(CUSTOMERFACESPATH);
-    public static Sprite[] CUSTOMERHAIRS = Resources.LoadAll<Sprite>(CUSTOMERHAIRSPATH);
-    public static Sprite[] CUSTOMERKITS = Resources.LoadAll<Sprite>(CUSTOMERKITSPATH);
+    public static Sprite[][] CUSTOMERHAIRS = new Sprite[][] { Resources.LoadAll<Sprite>(CUSTOMERHAIRSPATH + SEXHAIRPATH[0]), Resources.LoadAll<Sprite>(CUSTOMERHAIRSPATH + SEXHAIRPATH[1]) };
+    public static Sprite[][] CUSTOMERKITS = new Sprite[][] { Resources.LoadAll<Sprite>(CUSTOMERKITSPATH + SEXKITPATH[0]), Resources.LoadAll<Sprite>(CUSTOMERKITSPATH + SEXKITPATH[1]) };
 
     public static Resolution[] RESOLUTIONS = new Resolution[]
     {

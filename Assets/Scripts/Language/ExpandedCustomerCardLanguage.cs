@@ -24,6 +24,6 @@ public class ExpandedCustomerCardLanguage : CustomerCardLanguage
     {
         if (expandedCustomerCard.customerCode.Length == 0)
             return;
-        customerPhrase.text = currentPack.customerPhrases[expandedCustomerCard.customerCode[2]];
+        customerPhrase.text = currentPack.customerPhrases[expandedCustomerCard.customerCode[3]];
     }
 }
