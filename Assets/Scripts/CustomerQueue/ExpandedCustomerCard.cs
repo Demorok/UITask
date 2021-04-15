@@ -19,6 +19,8 @@ public class ExpandedCustomerCard : CustomerCard
 
     public void Construct(Customer customer, GameObject ethalon)
     {
+        currentTimeScale = Time.timeScale;
+        Time.timeScale = 1;
         card.Open_Window_X(() => Pause());
         Construct(customer);
         exCardLanguage.Update_Phrase_By_Code();
@@ -27,19 +29,19 @@ public class ExpandedCustomerCard : CustomerCard
 
     public void Close_Card()
     {
+        Time.timeScale = 1;
         customerCard.GetComponent<CustomerCard>().Remove_Customer();
-        Continue();
-        card.Destroy_Window_X(() => Destroy(gameObject));
+        card.Destroy_Window_X(() => Continue());
     }
 
     void Pause()
     {
-        currentTimeScale = Time.timeScale;
         Time.timeScale = 0;
     }
 
     void Continue()
     {
         Time.timeScale = currentTimeScale;
+        Destroy(gameObject);
     }
 }

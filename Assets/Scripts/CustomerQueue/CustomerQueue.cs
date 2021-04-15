@@ -78,6 +78,17 @@ public class CustomerQueue : MonoBehaviour
         Spawn_Customers();
     }
 
+    public void Clear_Queue()
+    {
+        StopCoroutine("Update_Customers_Position_Coroutine");
+        foreach (GameObject customer in customers)
+        {
+            customer.Stop_Ainmation();
+            Destroy(customer);
+        }
+        customers.Clear();
+    }
+
     SaveData current_Progress()
     {
         Customer[] customersData = new Customer[customers.Count];
@@ -143,17 +154,6 @@ public class CustomerQueue : MonoBehaviour
             clone.GetComponent<CustomerCard>().Construct(customersData[i]);
         }
         Update_Customers_Position();
-    }
-
-    void Clear_Queue()
-    {
-        StopCoroutine("Update_Customers_Position_Coroutine");
-        foreach (GameObject customer in customers)
-        {
-            customer.Stop_Ainmation();
-            Destroy(customer);
-        }
-        customers.Clear();
     }
 
     void Update_Customers_Position()
