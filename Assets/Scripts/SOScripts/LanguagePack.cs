@@ -75,8 +75,10 @@ public class LanguagePack : ScriptableObject
     public string cabinetSave;
     public string cabinetMainMenu;
 
-    public string[] customerNames;
-    public string[] customerSurnames;
+    public string[] customerMaleNames;
+    public string[] customerFemaleNames;
+    public string[] customerMaleSurnames;
+    public string[] customerFemaleSurnames;
     public string[] customerPhrases;
 
     #endregion
@@ -116,5 +118,41 @@ public class LanguagePack : ScriptableObject
         else if (value == lowGraphicsQuality)
             return GlobalVariables.LOWQUALITYMAPPING;
         else return value;
+    }
+
+    public string[] Get_Names_by_Sex(int value)
+    {
+        string[] result;
+        switch (value)
+        {
+            case 0:
+                result = customerFemaleNames;
+                break;
+            case 1:
+                result = customerMaleNames;
+                break;
+            default:
+                result = customerMaleNames;
+                break;
+        }
+        return result;
+    }
+
+    public string[] Get_Surnames_by_Sex(int value)
+    {
+        string[] result;
+        switch (value)
+        {
+            case 0:
+                result = customerFemaleSurnames;
+                break;
+            case 1:
+                result = customerMaleSurnames;
+                break;
+            default:
+                result = customerMaleSurnames;
+                break;
+        }
+        return result;
     }
 }

@@ -24,16 +24,16 @@ public class CustomerCardLanguage : LanguageController
     {
         if (customerCard.customerCode.Length == 0)
             return;
-        string name = currentPack.customerNames[customerCard.customerCode[1]];
-        string surname = currentPack.customerSurnames[customerCard.customerCode[2]];
+        string name = currentPack.Get_Names_by_Sex(customerCard.customerCode[0])[customerCard.customerCode[1]];
+        string surname = currentPack.Get_Surnames_by_Sex(customerCard.customerCode[0])[customerCard.customerCode[2]];
         customerName.text = string.Format("{0} {1}", name, surname);
     }
 
     public int[] Generate_Customer_Code()
     {
         int sex = Random.Range(0,2);
-        int randomNameCode = Random.Range(0, currentPack.customerNames[0].Length);
-        int randomSurnameCode = Random.Range(0, currentPack.customerSurnames.Length);
+        int randomNameCode = Random.Range(0, currentPack.Get_Names_by_Sex(sex).Length);
+        int randomSurnameCode = Random.Range(0, currentPack.Get_Surnames_by_Sex(sex).Length);
         int randomPhraseCode = Random.Range(0, currentPack.customerPhrases.Length);
         return new int[] { sex, randomNameCode, randomSurnameCode, randomPhraseCode };
     }

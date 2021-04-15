@@ -30,10 +30,10 @@ MonoBehaviour:
   settingsLanguageTab: Language
   settingsLanguage: Language
   settingsBack: Back
+  veryHighGraphicsQuality: Very High
   highGraphicsQuality: High
   mediumGraphicsQuality: Medium
   lowGraphicsQuality: Low
-  veryHighGraphicsQuality: Very High
   cabinetTitle: Cabinet
   cabinetDay: Day
   cabinetSkipDay: Skip Day
@@ -56,6 +56,30 @@ MonoBehaviour:
   - White
   - Green
   - Brown
+  - McGregor
+  - McDonald
+  - Jobs
+  - Spielberg
+  - Nightly
+  customerMaleNames:
+  - Adam
+  - Ken
+  - Max
+  - Baraka
+  - John
+  customerFemaleNames:
+  - Jane
+  - Alice
+  - Kate
+  - Jenn
+  - Jade
+  customerMaleSurnames:
+  - Smith
+  - Black
+  - White
+  - Green
+  - Brown
+  customerFemaleSurnames:
   - McGregor
   - McDonald
   - Jobs
