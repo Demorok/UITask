@@ -16,11 +16,15 @@ public class CustomerQueue : MonoBehaviour
 
     float endOfDay;
 
-    public List<GameObject> customers = new List<GameObject>();
+    public List<GameObject> customers { get; private set; } = new List<GameObject>();
     public static Queue<GameObject> removeQueue = new Queue<GameObject>();
+
+    bool start = false;
 
     private void Update()
     {
+        if (!start)
+            return;
         Update_Time();
         Check_Customer_Queue();
         Check_End_Of_Day();
@@ -28,6 +32,7 @@ public class CustomerQueue : MonoBehaviour
 
     public void New_Cabinet()
     {
+        start = true;
         day = 0;
         Start_New_Day();
     }
@@ -66,6 +71,13 @@ public class CustomerQueue : MonoBehaviour
             Load_Day(progress);
     }
 
+    public void Start_New_Day()
+    {
+        ++day;
+        Start_Timer();
+        Spawn_Customers();
+    }
+
     SaveData current_Progress()
     {
         Customer[] customersData = new Customer[customers.Count];
@@ -77,15 +89,9 @@ public class CustomerQueue : MonoBehaviour
         return new SaveData(day, deltaTime, customersData);
     }
 
-    void Start_New_Day()
-    {
-        ++day;
-        Start_Timer();
-        Spawn_Customers();
-    }
-
     void Load_Day(SaveData saveData)
     {
+        start = true;
         day = saveData.day;
         Spawn_Customers(saveData.customers);
         Start_Timer(saveData.deltaTime);

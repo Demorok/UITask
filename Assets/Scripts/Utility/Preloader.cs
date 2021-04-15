@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Preloader : MonoBehaviour
 {
-    [SerializeField] GameObject startScreen;
-
     UserSettings userSettings;
 
     private void Awake()
@@ -13,9 +11,9 @@ public class Preloader : MonoBehaviour
         userSettings = GlobalVariables.SOUSERSETTINGS;
         Load_User_Settings();
         Create_Save_Directory();
-        startScreen.SetActive(true);
         SoundRecorder.Play_Music(GlobalVariables.MAINMENUMUSIC);
-        DOTween.Init(true, true, LogBehaviour.ErrorsOnly);
+        DOTween.Init(true, false, LogBehaviour.ErrorsOnly);
+        GetComponent<Window>().Call_Window(gameObject.transform);
     }
 
     void Create_Save_Directory()

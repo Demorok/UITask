@@ -18,6 +18,8 @@ public class GlobalVariables : MonoBehaviour
     public static GameObject CUSTOMERPREFAB = Resources.Load<GameObject>("Prefabs/Customer");
     public static GameObject EXPANDEDCUSTOMERPREFAB = Resources.Load<GameObject>("Prefabs/ExpandedCustomer");
     public static GameObject SETTINGSPREFAB = Resources.Load<GameObject>("Prefabs/Settings");
+    public static GameObject MAINMENUPREFAB = Resources.Load<GameObject>("Prefabs/MainMenu");
+    public static GameObject CABINETPREFAB = Resources.Load<GameObject>("Prefabs/Cabinet");
 
     public static AudioClip MAINMENUMUSIC = Resources.Load<AudioClip>("Sounds/Music/MainMenu");
     public static AudioClip CABINETMUSIC = Resources.Load<AudioClip>("Sounds/Music/Cabinet");
